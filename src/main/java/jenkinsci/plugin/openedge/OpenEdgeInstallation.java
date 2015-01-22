@@ -61,14 +61,14 @@ public final class OpenEdgeInstallation extends ToolInstallation implements Node
         return new OpenEdgeInstallation(getName(), environment.expand(getHome()), getProperties().toList());
     }
 
-    @Override
-    public void buildEnvVars(EnvVars env) {
-    String root = getHome();
-    if (root != null) {
-    env.put("DLC", root);
-    env.put("PATH+DLC", new File(root, "bin").toString());
-    }
-    }
+	@Override
+	public void buildEnvVars(EnvVars env) {
+		String root = getHome();
+		if (root != null) {
+			env.put("DLC", root);
+			env.put("PATH+DLC", new File(root, "bin").toString());
+		}
+	}
     
     @Extension
     public static class DescriptorImpl extends ToolDescriptor<OpenEdgeInstallation> {
@@ -93,6 +93,7 @@ public final class OpenEdgeInstallation extends ToolInstallation implements Node
         @Override
         public void setInstallations(OpenEdgeInstallation... installations) {
             Jenkins.getInstance().getDescriptorByType(OpenEdgeBuildWrapper.DescriptorImpl.class).setInstallations(installations);
+            Jenkins.getInstance().getDescriptorByType(OpenEdgeMatrixBuildWrapper.DescriptorImpl.class).setInstallations(installations);
         }
 
     }

@@ -1,0 +1,10 @@
+<!-- JDK config -->
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:i="jelly:fmt" xmlns:p="/lib/hudson/project">
+<f:entry>
+<j:forEach var="oe" items="${descriptor.openEdgeInstallations}">
+<f:checkbox name="values" json="${oe.name}" checked="${instance.values.contains(oe.name)}" title="${oe.name}" />
+<st:nbsp/>
+</j:forEach>
+</f:entry>
+</j:jelly>
