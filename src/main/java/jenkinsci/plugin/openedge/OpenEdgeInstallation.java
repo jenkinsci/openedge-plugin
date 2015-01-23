@@ -34,20 +34,28 @@ import hudson.tools.ToolDescriptor;
 import hudson.tools.ToolInstallation;
 import hudson.util.FormValidation;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import jenkins.model.Jenkins;
 
 import org.kohsuke.stapler.DataBoundConstructor;
 
+import com.google.common.io.Files;
+
 /**
  * @author Gilles QUERRET
  */
 public final class OpenEdgeInstallation extends ToolInstallation implements NodeSpecific<OpenEdgeInstallation>, EnvironmentSpecific<OpenEdgeInstallation> {
+    private static final String MAIN_PATTERN = "(?:[a-zA-Z]+\\s+)+((\\d+)(?:[A-Z0-9\\u002E])*)\\s+as of(.*)";
 	private static final long serialVersionUID = -1639511702015070000L;
-	
+
 	@DataBoundConstructor
     public OpenEdgeInstallation(String name, String home, List<? extends ToolProperty<?>> properties) {
     	super(name, home, properties);
@@ -69,7 +77,33 @@ public final class OpenEdgeInstallation extends ToolInstallation implements Node
 			env.put("PATH+DLC", new File(root, "bin").toString());
 		}
 	}
-    
+
+	/**
+	 * Don't use on slave OpenEdgeInstallation
+	 * 
+	 * @return The major version number or an empty string if not found
+	 */
+	public String getVersionNumber() {
+		try {
+			return parseVersionNumber(extractVersionString(new File(getHome())));
+		} catch (IOException caught) {
+			return "";
+		}
+	}
+
+	private static String extractVersionString(File dir) throws IOException {
+		return Files.readFirstLine(new File(dir, "version"), Charset.forName("US-ASCII"));
+	}
+
+	private static String parseVersionNumber(String str) {
+		Matcher m = Pattern.compile(MAIN_PATTERN).matcher(str);
+		if (m.matches()) {
+			return m.group(2);
+		}
+
+		return "";
+	}
+
     @Extension
     public static class DescriptorImpl extends ToolDescriptor<OpenEdgeInstallation> {
 

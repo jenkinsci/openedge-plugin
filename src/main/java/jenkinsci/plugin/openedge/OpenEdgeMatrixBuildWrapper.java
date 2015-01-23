@@ -35,8 +35,10 @@ import hudson.model.Computer;
 import hudson.tasks.BuildWrapper;
 import hudson.tasks.BuildWrapperDescriptor;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.kohsuke.stapler.DataBoundConstructor;
 
@@ -44,6 +46,7 @@ import org.kohsuke.stapler.DataBoundConstructor;
  * @author Gilles QUERRET
  */
 public class OpenEdgeMatrixBuildWrapper extends BuildWrapper {
+	private static Logger LOGGER = Logger.getLogger(OpenEdgeMatrixBuildWrapper.class.getName());
 
 	@DataBoundConstructor
 	public OpenEdgeMatrixBuildWrapper() {
@@ -52,8 +55,13 @@ public class OpenEdgeMatrixBuildWrapper extends BuildWrapper {
 
 	@Override
 	public Environment setUp(AbstractBuild build, Launcher launcher, BuildListener listener) throws IOException, InterruptedException {
-		String oeAxis = build.getEnvironment(listener).get("oe");
+		String oeAxis = build.getEnvironment(listener).get("oeaxis");
+		LOGGER.info("OpenEdge axis : " + oeAxis);
+
 		OpenEdgeInstallation installation = getOpenEdgeInstallation(oeAxis);
+		// This is executed on the master server, so we can't use getVersionNumber from the Node specific OpenEdgeInstallation
+		// However, it should be expected to be in the same major version !
+		final String majorVersion = installation.getVersionNumber(); 
 		if (installation != null) {
 			installation = installation.forNode(Computer.currentComputer().getNode(), listener);
 		}
@@ -66,6 +74,7 @@ public class OpenEdgeMatrixBuildWrapper extends BuildWrapper {
 				if (install != null) {
 					EnvVars envVars = new EnvVars();
 					install.buildEnvVars(envVars);
+					envVars.put("OE_MAJOR_VERSION", majorVersion);
 					env.putAll(envVars);
 				}
 			}
@@ -93,12 +102,11 @@ public class OpenEdgeMatrixBuildWrapper extends BuildWrapper {
 
 		@Override
 		public String getDisplayName() {
-			return "Use OpenEdge in matrix job";
+			return "Use OpenEdge version from matrix axis";
 		}
 
 		@Override
 		public boolean isApplicable(AbstractProject<?, ?> item) {
-			// MatrixProject is configured by Axis
 			// TODO Better solution would be to return false only if an OpenEdge axis is configured
 			if (item instanceof MatrixProject)
 				return true;

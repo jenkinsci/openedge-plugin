@@ -27,9 +27,9 @@ public class OpenEdgeAxis extends Axis {
 	
 	@DataBoundConstructor
 	public OpenEdgeAxis(String[] values) {
-		super("oe", Arrays.asList(values));
+		super("oeaxis", Arrays.asList(values));
 	}
-	
+
 	@Extension
     public static class DescriptorImpl extends AxisDescriptor {
 		@CopyOnWrite
