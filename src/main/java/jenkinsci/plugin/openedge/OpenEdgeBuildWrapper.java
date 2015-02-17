@@ -27,6 +27,7 @@ import hudson.CopyOnWrite;
 import hudson.EnvVars;
 import hudson.Extension;
 import hudson.Launcher;
+import hudson.matrix.MatrixProject;
 import hudson.model.BuildListener;
 import hudson.model.AbstractBuild;
 import hudson.model.AbstractProject;
@@ -97,6 +98,11 @@ public class OpenEdgeBuildWrapper extends BuildWrapper {
 
 		@Override
 		public boolean isApplicable(AbstractProject<?, ?> item) {
+			// MatrixProject is configured by Axis
+			// TODO Better solution would be to return false only if an OpenEdge axis is configured
+			if (item instanceof MatrixProject)
+				return false;
+
 			return true;
 		}
 

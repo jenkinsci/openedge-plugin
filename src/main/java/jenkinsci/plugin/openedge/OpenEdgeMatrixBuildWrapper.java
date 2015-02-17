@@ -61,7 +61,8 @@ public class OpenEdgeMatrixBuildWrapper extends BuildWrapper {
 		OpenEdgeInstallation installation = getOpenEdgeInstallation(oeAxis);
 		// This is executed on the master server, so we can't use getVersionNumber from the Node specific OpenEdgeInstallation
 		// However, it should be expected to be in the same major version !
-		final String majorVersion = installation.getVersionNumber(); 
+		final String majorVersion = installation.getVersionNumber();
+		final String arch = installation.getArch();
 		if (installation != null) {
 			installation = installation.forNode(Computer.currentComputer().getNode(), listener);
 		}
@@ -75,6 +76,7 @@ public class OpenEdgeMatrixBuildWrapper extends BuildWrapper {
 					EnvVars envVars = new EnvVars();
 					install.buildEnvVars(envVars);
 					envVars.put("OE_MAJOR_VERSION", majorVersion);
+					envVars.put("OE_ARCH", arch);
 					env.putAll(envVars);
 				}
 			}

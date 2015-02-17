@@ -9,7 +9,7 @@
 
   <artifactId>openedge</artifactId>
   <packaging>hpi</packaging>
-  <version>0.2</version>
+  <version>0.3</version>
   <name>Jenkins OpenEdge Plugin</name>
   <url>http://wiki.jenkins-ci.org/display/JENKINS/OpenEdge+Plugin</url>
 

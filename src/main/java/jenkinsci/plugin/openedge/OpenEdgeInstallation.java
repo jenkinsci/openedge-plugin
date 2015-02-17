@@ -91,6 +91,18 @@ public final class OpenEdgeInstallation extends ToolInstallation implements Node
 		}
 	}
 
+	public String getArch() {
+		File dlcHome = new File(getHome());
+		try {
+			RCodeInfo rcode = new RCodeInfo(new File(dlcHome, "tty/prostart.r"));
+			return (rcode.is64bits() ? "64" : "32");
+		} catch (IOException caught) {
+			return "";
+		} catch (RCodeInfo.InvalidRCodeException caught) {
+			return "";
+		}
+	}
+
 	private static String extractVersionString(File dir) throws IOException {
 		return Files.readFirstLine(new File(dir, "version"), Charset.forName("US-ASCII"));
 	}
