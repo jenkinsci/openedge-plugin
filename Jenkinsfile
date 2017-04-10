@@ -20,7 +20,7 @@ node ('master') {
       sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package"
     }
   }
-  archiveArtifacts artifacts: 'target/*.jar'
+  archiveArtifacts artifacts: 'target/*.hpi'
   // step([$class: 'Publisher', reportFilenamePattern: '**/testng-results.xml'])
 
   if ("master" == env.BRANCH_NAME) {
