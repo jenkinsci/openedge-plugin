@@ -4,13 +4,18 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>1.565.3</version>
+    <version>2.2</version>
   </parent>
+
+  <properties>
+    <jenkins.version>1.609.1</jenkins.version>
+  </properties>
 
   <artifactId>openedge</artifactId>
   <packaging>hpi</packaging>
+  <name>OpenEdge Plugin</name>
   <version>0.3</version>
-  <name>Jenkins OpenEdge Plugin</name>
+  <description>OpenEdge installs management</description>
   <url>http://wiki.jenkins-ci.org/display/JENKINS/OpenEdge+Plugin</url>
 
   <licenses>
@@ -22,7 +27,7 @@
 
   <developers>
     <developer>
-      <id>jakejustus</id>
+      <id>gquerret</id>
       <name>Gilles QUERRET</name>
       <email>g.querret+jenkins@gmail.com</email>
       <timezone>+1</timezone>
