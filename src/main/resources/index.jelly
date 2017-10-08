@@ -1,3 +1,5 @@
+<?jelly escape-by-default='true'?>
 <div>
     This plugin makes it possible to handle OpenEdge installations
 </div>
+
