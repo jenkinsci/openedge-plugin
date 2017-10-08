@@ -9,6 +9,7 @@
 
   <properties>
     <jenkins.version>1.609.1</jenkins.version>
+    <findbugs.failOnError>false</findbugs.failOnError>
   </properties>
 
   <artifactId>openedge</artifactId>
@@ -76,5 +77,4 @@
     <url>http://riverside-software.fr</url>
   </organization>
 
-
-</project>  
+</project>
