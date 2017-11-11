@@ -12,11 +12,11 @@
     <findbugs.failOnError>false</findbugs.failOnError>
   </properties>
 
-  <artifactId>openedge</artifactId>
+  <artifactId>openedge-jenkins-plugin</artifactId>
   <packaging>hpi</packaging>
-  <name>OpenEdge Plugin</name>
-  <version>0.4</version>
-  <description>OpenEdge installs management</description>
+  <name>OpenEdge Plugin for Jenkins</name>
+  <version>0.5-SNAPSHOT</version>
+  <description>OpenEdge installations management</description>
   <url>http://wiki.jenkins-ci.org/display/JENKINS/OpenEdge+Plugin</url>
 
   <licenses>

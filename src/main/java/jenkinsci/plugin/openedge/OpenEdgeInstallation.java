@@ -1,25 +1,25 @@
-/*
- * The MIT License (MIT)
+/**
+ * MIT License
  *
- * Copyright (c) 2014, Kyle Sweeney, Gregory Boissinot and other contributors
- *
+ * Copyright (c) 2017 Riverside Software
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
+ * 
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 package jenkinsci.plugin.openedge;
 
@@ -34,9 +34,7 @@ import hudson.tools.ToolDescriptor;
 import hudson.tools.ToolInstallation;
 import hudson.util.FormValidation;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
@@ -96,9 +94,7 @@ public final class OpenEdgeInstallation extends ToolInstallation implements Node
 		try {
 			RCodeInfo rcode = new RCodeInfo(new File(dlcHome, "tty/prostart.r"));
 			return (rcode.is64bits() ? "64" : "32");
-		} catch (IOException caught) {
-			return "";
-		} catch (RCodeInfo.InvalidRCodeException caught) {
+		} catch (IOException | RCodeInfo.InvalidRCodeException caught) {
 			return "";
 		}
 	}
