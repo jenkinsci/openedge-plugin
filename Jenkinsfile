@@ -1,6 +1,6 @@
 #!groovy
 
-stage 'Build' {
+stage ('Build') {
   node ('master') {
     checkout([
       $class: 'GitSCM',
