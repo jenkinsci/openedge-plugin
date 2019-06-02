@@ -4,20 +4,21 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>2.36</version>
+    <version>3.4</version>
+    <relativePath />
   </parent>
 
   <properties>
-    <jenkins.version>1.609.1</jenkins.version>
-    <findbugs.failOnError>false</findbugs.failOnError>
+    <jenkins.version>2.60.3</jenkins.version>
+    <java.level>8</java.level>
   </properties>
 
-  <artifactId>openedge-jenkins-plugin</artifactId>
+  <groupId>io.jenkins.plugins</groupId>
+  <artifactId>openedge</artifactId>
   <packaging>hpi</packaging>
-  <name>OpenEdge Plugin for Jenkins</name>
+  <name>OpenEdge (Progress ABL)</name>
   <version>0.5-SNAPSHOT</version>
-  <description>OpenEdge installations management</description>
-  <url>http://wiki.jenkins-ci.org/display/JENKINS/OpenEdge+Plugin</url>
+  <url>http://wiki.jenkins-ci.org/display/JENKINS/OpenEdge</url>
 
   <licenses>
     <license>
@@ -56,14 +57,6 @@
     </pluginRepository>
   </pluginRepositories>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>matrix-project</artifactId>
-      <version>1.4</version>
-    </dependency>
-  </dependencies>
-
   <issueManagement>
     <system>GitHub</system>
     <url>https://github.com/Riverside-Software/openedge-jenkins-plugin/issues</url>
@@ -76,5 +69,14 @@
     <name>Riverside Software</name>
     <url>http://riverside-software.fr</url>
   </organization>
+
+  
+  <dependencies>
+    <dependency>
+      <groupId>eu.rssw.openedge.rcode</groupId>
+      <artifactId>rcode-reader</artifactId>
+      <version>2.4.0</version>
+    </dependency>
+  </dependencies>
 
 </project>
