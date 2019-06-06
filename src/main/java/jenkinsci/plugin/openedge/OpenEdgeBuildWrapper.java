@@ -19,6 +19,7 @@
 
 package jenkinsci.plugin.openedge;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Map;
@@ -29,19 +30,24 @@ import hudson.AbortException;
 import hudson.CopyOnWrite;
 import hudson.EnvVars;
 import hudson.Extension;
+import hudson.FilePath;
 import hudson.Launcher;
 import hudson.model.AbstractBuild;
 import hudson.model.AbstractProject;
 import hudson.model.BuildListener;
 import hudson.model.Computer;
 import hudson.model.Node;
+import hudson.model.Run;
+import hudson.model.TaskListener;
 import hudson.tasks.BuildWrapper;
 import hudson.tasks.BuildWrapperDescriptor;
+import jenkins.tasks.SimpleBuildWrapper;
+import jenkins.tasks.SimpleBuildWrapper.Context;
 
 /**
  * @author Gilles QUERRET
  */
-public class OpenEdgeBuildWrapper extends BuildWrapper {
+public class OpenEdgeBuildWrapper extends SimpleBuildWrapper {
   private String openEdgeInstall;
 
   @DataBoundConstructor
@@ -49,9 +55,7 @@ public class OpenEdgeBuildWrapper extends BuildWrapper {
     this.openEdgeInstall = openEdgeInstall;
   }
 
-  @Override
-  public Environment setUp(AbstractBuild build, Launcher launcher, BuildListener listener)
-      throws IOException, InterruptedException {
+  public void setUp(Context context, Run<?,?> build, FilePath workspace, Launcher launcher, TaskListener listener, EnvVars initialEnvironment) throws IOException, InterruptedException {
     OpenEdgeInstallation installation = getOpenEdgeInstallation();
     if (installation == null) {
       throw new AbortException("No such OpenEdge installation: '" + openEdgeInstall + "'");
@@ -63,18 +67,10 @@ public class OpenEdgeBuildWrapper extends BuildWrapper {
         installation = installation.forNode(node, listener);
     }
 
-    // Add DLC variable and modify PATH
-    final OpenEdgeInstallation install = installation;
-    return new Environment() {
-      @Override
-      public void buildEnvVars(Map<String, String> env) {
-        if (install != null) {
-          EnvVars envVars = new EnvVars();
-          install.buildEnvVars(envVars);
-          env.putAll(envVars);
-        }
-      }
-    };
+    if (installation != null) {
+      context.env("DLC", installation.getHome());
+      context.env("PATH+DLC", new File(installation.getHome(), "bin").toString());
+    }
   }
 
   private OpenEdgeInstallation getOpenEdgeInstallation() {
