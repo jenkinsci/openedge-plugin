@@ -18,7 +18,7 @@
   <packaging>hpi</packaging>
   <name>OpenEdge (Progress ABL)</name>
   <version>0.9-SNAPSHOT</version>
-  <url>http://wiki.jenkins-ci.org/display/JENKINS/OpenEdge</url>
+  <url>https://wiki.jenkins.io/display/JENKINS/OpenEdge+Plugin</url>
 
   <licenses>
     <license>
@@ -40,7 +40,7 @@
     <connection>scm:git:git://github.com/jenkinsci/openedge-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/openedge-plugin.git</developerConnection>
     <tag>HEAD</tag>
-    <url>https://github.com/Riverside-Software/openedge-jenkins-plugin</url>
+    <url>https://github.com/jenkinsci/openedge-plugin</url>
   </scm>
 
   <repositories>
@@ -58,18 +58,13 @@
   </pluginRepositories>
 
   <issueManagement>
-    <system>GitHub</system>
-    <url>https://github.com/Riverside-Software/openedge-jenkins-plugin/issues</url>
+    <system>Jira</system>
+    <url>https://issues.jenkins-ci.org</url>
   </issueManagement>
   <ciManagement>
     <system>Jenkins</system>
-    <url>https://ci.rssw.eu</url>
+    <url>https://ci.jenkins.io/job/Plugins/job/openedge-plugin/</url>
   </ciManagement>
-  <organization>
-    <name>Riverside Software</name>
-    <url>http://riverside-software.fr</url>
-  </organization>
-
   
   <dependencies>
     <dependency>
