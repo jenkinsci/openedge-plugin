@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import com.google.common.io.Files;
@@ -119,6 +120,7 @@ public final class OpenEdgeInstallation extends ToolInstallation
   }
 
   @Extension
+  @Symbol("openedge")
   public static class DescriptorImpl extends ToolDescriptor<OpenEdgeInstallation> {
 
     @Override
