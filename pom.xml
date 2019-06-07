@@ -17,7 +17,7 @@
   <artifactId>openedge</artifactId>
   <packaging>hpi</packaging>
   <name>OpenEdge (Progress ABL)</name>
-  <version>0.7-SNAPSHOT</version>
+  <version>0.7</version>
   <url>http://wiki.jenkins-ci.org/display/JENKINS/OpenEdge</url>
 
   <licenses>
