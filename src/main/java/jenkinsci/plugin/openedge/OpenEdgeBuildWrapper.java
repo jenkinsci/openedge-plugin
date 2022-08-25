@@ -22,7 +22,6 @@ package jenkinsci.plugin.openedge;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Map;
 
 import org.kohsuke.stapler.DataBoundConstructor;
 
@@ -32,17 +31,13 @@ import hudson.EnvVars;
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.Launcher;
-import hudson.model.AbstractBuild;
 import hudson.model.AbstractProject;
-import hudson.model.BuildListener;
 import hudson.model.Computer;
 import hudson.model.Node;
 import hudson.model.Run;
 import hudson.model.TaskListener;
-import hudson.tasks.BuildWrapper;
 import hudson.tasks.BuildWrapperDescriptor;
 import jenkins.tasks.SimpleBuildWrapper;
-import jenkins.tasks.SimpleBuildWrapper.Context;
 
 /**
  * @author Gilles QUERRET
