@@ -1,7 +1,3 @@
-# OpenEdge plugin for Jenkins
+# OpenEdge Plugin for Jenkins
 
-This plugin let you manage OpenEdge installations across different slaves. Once installed, you can add existing installations in the main Jenkins configuration page.
-
-To build the plugin :
-```mvn install```
-
+This plugin lets you manage OpenEdge installations across different agents. Once installed, you can add OpenEdge installations on the main Jenkins configuration page.
