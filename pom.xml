@@ -16,7 +16,7 @@
   <artifactId>openedge</artifactId>
   <packaging>hpi</packaging>
   <name>OpenEdge (Progress ABL)</name>
-  <version>0.21</version>
+  <version>0.22-SNAPSHOT</version>
   <url>https://wiki.jenkins.io/display/JENKINS/OpenEdge+Plugin</url>
 
   <licenses>
@@ -39,7 +39,7 @@
     <connection>scm:git:git://github.com/jenkinsci/openedge-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/openedge-plugin.git</developerConnection>
     <url>https://github.com/jenkinsci/openedge-plugin</url>
-    <tag>openedge-0.21</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <repositories>
