@@ -23,7 +23,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
-import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import hudson.AbortException;
@@ -79,7 +78,7 @@ public class OpenEdgeBuildWrapper extends SimpleBuildWrapper {
     return null;
   }
 
-  @Extension @Symbol("withOpenEdge")
+  @Extension
   public static final class DescriptorImpl extends BuildWrapperDescriptor {
     @CopyOnWrite
     private volatile OpenEdgeInstallation[] installations = new OpenEdgeInstallation[0];
