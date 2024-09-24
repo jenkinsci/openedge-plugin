@@ -16,7 +16,11 @@
   <artifactId>openedge</artifactId>
   <packaging>hpi</packaging>
   <name>OpenEdge (Progress ABL)</name>
+<<<<<<< Updated upstream
   <version>0.22-SNAPSHOT</version>
+=======
+  <version>0.22</version>
+>>>>>>> Stashed changes
   <url>https://wiki.jenkins.io/display/JENKINS/OpenEdge+Plugin</url>
 
   <licenses>
