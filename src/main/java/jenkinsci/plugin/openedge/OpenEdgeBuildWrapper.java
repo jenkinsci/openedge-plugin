@@ -41,7 +41,7 @@ import hudson.tasks.BuildWrapperDescriptor;
 import jenkins.tasks.SimpleBuildWrapper;
 
 /**
- * @author Gilles QUERRET
+ * @author Gilles Querret
  */
 public class OpenEdgeBuildWrapper extends SimpleBuildWrapper {
   private String openEdgeInstall;

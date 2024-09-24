@@ -50,7 +50,7 @@ import hudson.util.FormValidation;
 import jenkins.model.Jenkins;
 
 /**
- * @author Gilles QUERRET
+ * @author Gilles Querret
  */
 public final class OpenEdgeInstallation extends ToolInstallation
     implements NodeSpecific<OpenEdgeInstallation> {
@@ -77,7 +77,7 @@ public final class OpenEdgeInstallation extends ToolInstallation
   }
 
   /**
-   * Don't use on slave OpenEdgeInstallation
+   * Don't use on agent OpenEdgeInstallation
    * 
    * @return The major version number or an empty string if not found
    */
@@ -138,13 +138,12 @@ public final class OpenEdgeInstallation extends ToolInstallation
 
     @Override
     public OpenEdgeInstallation[] getInstallations() {
-      return Jenkins.getInstance().getDescriptorByType(OpenEdgeBuildWrapper.DescriptorImpl.class).getInstallations();
+      return Jenkins.get().getDescriptorByType(OpenEdgeBuildWrapper.DescriptorImpl.class).getInstallations();
     }
 
     @Override
     public void setInstallations(OpenEdgeInstallation... installations) {
-      Jenkins.getInstance().getDescriptorByType(OpenEdgeBuildWrapper.DescriptorImpl.class).setInstallations(
-          installations);
+      Jenkins.get().getDescriptorByType(OpenEdgeBuildWrapper.DescriptorImpl.class).setInstallations(installations);
     }
 
   }
